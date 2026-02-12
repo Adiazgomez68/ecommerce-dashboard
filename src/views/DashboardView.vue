@@ -3,7 +3,8 @@ import { onMounted } from 'vue'
 import { useProductStore } from '../stores/product-store'
 import ProductList from '../components/ProductList.vue'
 import ProductPagination from '../components/ProductPagination.vue'
-import WrapperContainer from '../components/WrapperContainer.vue'
+import WrapperContainer from '../components/common/WrapperContainer.vue'
+import LoaderSpinner from '../components/common/LoaderSpinner.vue'
 
 const store = useProductStore()
 
@@ -19,7 +20,11 @@ onMounted(() => {
       <h1>Productos</h1>
     </header>
 
-    <div class="content">
+    <div v-if="store.products.length === 0 && store.loadingProducts" class="loading">
+      <LoaderSpinner message="Cargando productos..." />
+    </div>
+
+    <div v-else-if="store.products.length > 0" class="content">
       <div class="filters">
         <input type="text" v-model="store.search" placeholder="Buscar producto" />
 
@@ -32,12 +37,16 @@ onMounted(() => {
       </div>
 
       <div class="product-list">
-        <ProductList :products="store.paginatedProducts" :loading="store.loadingProducts" />
+        <ProductList :products="store.paginatedProducts" />
       </div>
 
       <div class="pagination" v-if="store.totalPages > 1">
         <ProductPagination />
       </div>
+    </div>
+
+    <div v-else class="content">
+      <p>No se encontraron productos</p>
     </div>
   </WrapperContainer>
 </template>

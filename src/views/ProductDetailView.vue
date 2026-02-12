@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import WrapperContainer from '../components/WrapperContainer.vue'
+import WrapperContainer from '../components/common/WrapperContainer.vue'
 import { useProductStore } from '../stores/product-store'
 import { useRoute } from 'vue-router'
 import { onMounted } from 'vue'
 import ProductDetail from '../components/ProductDetail.vue'
+import LoaderSpinner from '../components/common/LoaderSpinner.vue'
 
 const store = useProductStore()
 const router = useRoute()
@@ -20,8 +21,7 @@ onMounted(() => {
     </header>
 
     <div v-if="store.loadingProducts" class="loading">
-      <span class="spinner"></span>
-      <p>Cargando producto...</p>
+      <LoaderSpinner message="Cargando productos..." />
     </div>
 
     <div v-else-if="store.productDetail" class="content">
@@ -37,26 +37,5 @@ onMounted(() => {
 <style scoped>
 .content {
   margin-top: 1.7rem;
-}
-
-.loading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.spinner {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top-color: #333;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 </style>

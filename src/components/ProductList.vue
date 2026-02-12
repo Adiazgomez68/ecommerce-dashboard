@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   products: Product[]
-  loading: boolean
 }>()
 
 const router = useRouter()
@@ -16,12 +15,7 @@ const gotToProductDetails = (id: number) => {
 
 <template>
   <div class="product-list-container">
-    <div v-if="props.products.length === 0 && props.loading" class="loading">
-      <span class="spinner"></span>
-      <p>Cargando productos...</p>
-    </div>
-
-    <table v-else-if="props.products.length > 0">
+    <table>
       <thead>
         <tr>
           <th>Imagen</th>
@@ -50,37 +44,12 @@ const gotToProductDetails = (id: number) => {
         </tr>
       </tbody>
     </table>
-
-    <div v-else class="content">
-      <p>No se encontraron productos</p>
-    </div>
   </div>
 </template>
 
 <style scoped>
 .product-list-container {
   margin-top: 0.5rem;
-}
-
-.loading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.spinner {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top-color: #333;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 table {
