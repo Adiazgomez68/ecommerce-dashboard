@@ -68,7 +68,7 @@ const closeSidebar = () => {
 }
 
 .header-content {
-  padding: 1rem 1.5rem;
+  padding: 1rem 0.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -106,7 +106,7 @@ const closeSidebar = () => {
 .content-wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
 }
 
 @media (min-width: 1024px) {

@@ -71,8 +71,13 @@ onMounted(() => {
   background-color: #fff;
 }
 
+.header {
+  margin-bottom: 1rem;
+}
+
 .header h1 {
   font-weight: 600;
+  color: #333333;
 }
 
 .filters {
