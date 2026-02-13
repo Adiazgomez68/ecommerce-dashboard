@@ -23,7 +23,7 @@ defineProps<{
   </div>
 
   <div class="stats">
-    <StatsCard title="Precio" :value="formatCurrency(product.price)" />
+    <StatsCard title="Precio" :value="formatCurrency(Number(product.price))" />
     <StatsCard title="Categoría" :value="capitalize(product.category)" />
     <StatsCard title="Rating ⭐" :value="product.rating.rate" />
     <StatsCard title="Cantidad de votos" :value="product.rating.count" />
