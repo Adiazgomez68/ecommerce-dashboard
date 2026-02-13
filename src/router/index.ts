@@ -12,7 +12,7 @@ const router = createRouter({
       redirect: '/products',
       children: [
         {
-          path: 'products',
+          path: '/products',
           name: 'products',
           component: ProductView,
         },
